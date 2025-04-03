@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function SearchNews({ onSearch }) {  // This component allows users to search for news articles by passing the search query to the parent component
-  // It takes a prop 'onSearch' which is a function to handle the search query
   const [news, setNews] = useState('');   // State to hold the search query
 
   const handleSearch = (event) => {
@@ -12,7 +11,7 @@ function SearchNews({ onSearch }) {  // This component allows users to search fo
   };
 
   return (
-    <div className="search-news">
+    <div>
       <input
         type="text"
         placeholder="Search news..."

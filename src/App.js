@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SearchNews from "./Components/SearchNews";
 import NewsFeed from "./Components/NewsFeed"; // Importing the NewsFeed component
+// import Skeleton from './Components/Skeleton';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the search query 
@@ -15,7 +16,6 @@ function App() {
 
       <SearchNews onSearch={handleSearch} /> {/* This is a component that allows users to search for news articles */}
       <NewsFeed searchQuery={searchQuery} /> {/*This is a component that displays the news articles based on the search query*/}
-
         
     </div>
 
