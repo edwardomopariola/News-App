@@ -11,7 +11,7 @@ function SearchNews({ onSearch }) {  // This component allows users to search fo
   };
 
   return (
-    <div>
+    <div className='search-bar'>
       <input
         type="text"
         placeholder="Search news..."
