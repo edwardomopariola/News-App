@@ -1,66 +1,53 @@
-import { useEffect, useState } from "react";
-import Skeleton from "./Skeleton";
+import { useState, useEffect } from "react";
+import { fetchTopNews, fetchNewsByQuery } from "../api"; // Importing functions to fetch news articles from the API
 
-const API_KEY = "9d3f0e550db9405eaef87d257bca0a90"; // Replace with your actual API key
 
-function NewsFeed() {
+function NewsFeed({ searchQuery }) { // The NewsFeed component takes a query prop to fetch news articles based on the search query
     const [articles, setArticles] = useState([]); // State to hold the news articles
     const [isLoading, setisLoading] = useState(false); // State to indicate loading status
     const [error, setError] = useState(null); // State to hold any error messages
 
     useEffect(() => {
-        fetchNews("latest"); // Fetch news articles when the component mounts with a default query "latest"
-    }
-    , []);
-
-    const fetchNews = async (query) => {
-        setisLoading(true); // Set loading to true when fetching news
-        setError(null); // Reset error state
-
-        try {
-            const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`); // Fetch news articles based on the search query
-            if (!response.ok) {
-                throw new Error(`Failed to fetch news articles${response.status}`); // Throw an error if the response is not ok
-            }
-            const data = await response.json(); // Parse the response data as JSON
-            setArticles(data.articles); // Update the articles state with the fetched articles
-        } catch (error) {
-            setError(error.message); // Set error message if an error occurs
-        } finally {
-            setisLoading(false); // Set loading to false after fetching news
+      const getNews = async () => {
+        setisLoading(true); // Set loading status to true before fetching data
+        // setError(null); // Reset error state before fetching data
+        let data;
+        if (searchQuery) { // Check if there is a search query
+          data = await fetchNewsByQuery(searchQuery); // Fetch news articles based on the search query
+        } else {
+            data = await fetchTopNews(); // Fetch top news articles if no query is provided
         }
-    };
+        if (!data) {
+          setError("No articles found"); // Set error message if no data is returned
+        } else {
+          setArticles(data); // Update the articles state with the fetched data
+          setError(null); // Reset error state if data is fetched successfully
+        }
+        setisLoading(false); // Set loading status to false after fetching data
+      };
 
-    
-
-    let content;  // Variable to hold the content to be displayed
+      getNews(); // Call the function to fetch news articles
+    }, [searchQuery]); // Dependency array to re-run the effect when the query changes
+    // console.log("Query received in NewsFeed:", query);
 
     if (isLoading) {
-        content = <Skeleton times={5} className="h-10 w-full" />; // Show skeleton loading effect while fetching news
-    } else if (error) {
-        content = <div>Error: {error}</div>; // Show error message if an error occurs
-    } else if (articles.length === 0) {
-        content = <div>No articles found</div>; // Show message if no articles are found
-    } else {
-        content = (
-            <ul>
-                {articles.map((article, index) => (   //map through the articles array and render each article as a list item
-                    <li key={index}>
-                        <a href={article.url} target="_blank" rel="noopener noreferrer">
-                            {article.title}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
+        return <div>Loading...</div>; // Show loading message while fetching data
+    }
+    if (error) {
+        return <div>Error: {error}</div>; // Show error message if there is an error
     }
 
-  return (
-    <div>
-      <h1>Top News</h1>
-        {content} {/* Render the content based on loading, error, or articles state */}
-    </div>
-  );
+    return (
+        <div className="news-feed"> {/* Container for the news articles */}
+            {articles.map((article, index) => ( // Map through the articles and render each one
+                <div key={index} className="article"> {/* Unique key for each article */}
+                    <h3>{article.title}</h3> {/* Article title */}
+                    <p>{article.description}</p> {/* Article description */}
+                    <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
+                </div>
+            ))}
+        </div>
+    );
 }
 
 
