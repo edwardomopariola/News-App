@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios"; // Importing axios for making HTTP requests
+import "./PopularNews.css"; // Importing CSS for styling the component
 
 
 function PopularNews() { // This component fetches and displays popular news articles
@@ -9,10 +10,11 @@ function PopularNews() { // This component fetches and displays popular news art
 
     useEffect(() => {
       const fetchPopularNews = async () => {
-        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=9d3f0e550db9405eaef87d257bca0a90");
-        // console.log("Response from API:", response); // Log the response from the API
-        const filterdNews = response.data.articles.filter((article) => article.popularity && article.popularity > 1000); // Filter articles based on popularity
-        setPopularNews(filterdNews); // Set the filtered articles to the state
+        setIsLoading(true); // Set loading status to true before fetching data
+        setError(null); // Reset error state before fetching data
+        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=9d3f0e550db9405eaef87d257bca0a90");   // Fetch popular news articles from the API
+        setPopularNews(response.data.articles || [] ); // Update the popular news state with the fetched data
+      
         setIsLoading(false); // Set loading to false after fetching data
       }
 
@@ -32,9 +34,13 @@ function PopularNews() { // This component fetches and displays popular news art
       <h1>Popular News</h1> {/* Title for popular news section */}
         {popularNews.map((article, index) => ( // Map through the popular news articles and render each one
           <div key={index} className="article"> {/* Unique key for each article */}
-            <h3>{article.title}</h3> {/* Article title */}
-            <p>{article.description}</p> {/* Article description */}
-            <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
+            <h3 className="article-title">{article.title}</h3> {/* Article title */}
+            <img className="article-image" src={article.urlToImage} alt={article.title} /> {/* Article image */}
+            <h4 className="article-source-name">{article.source.name}</h4> {/* Article source name */}
+            <p className="article-published">{new Date(article.publishedAt).toLocaleDateString()}</p>  {/* Article published date */}
+            <p className="article-author">{article.author}</p> {/* Article author */}
+            <p className="article-description">{article.description}</p> {/* Article description */}
+            <a className="article-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
           </div>
         ))}
       </div>
