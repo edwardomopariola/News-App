@@ -14,6 +14,13 @@
     margin-top: 20px;
 }
 
+.h1 {
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    margin-top: 1px;
+}
+
 .popular-news {
     flex-direction: column;
     align-items: center;

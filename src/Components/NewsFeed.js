@@ -31,6 +31,7 @@ function NewsFeed({ searchQuery }) { // The NewsFeed component takes a query pro
     }, [searchQuery]); // Dependency array to re-run the effect when the query changes
     // console.log("Query received in NewsFeed:", query);
 
+    // condition to check if data is still loading or if there is an error
     if (isLoading) {
         return <div>Loading...</div>; // Show loading message while fetching data
     }
@@ -40,7 +41,7 @@ function NewsFeed({ searchQuery }) { // The NewsFeed component takes a query pro
 
     return (
         <div className="news-feed"> {/* Container for the news articles */}
-            <h1>Top-New</h1>
+            <h1 className="h1"> Top-New</h1>
             {articles.map((article, index) => ( // Map through the articles and render each one
                 <div key={index} className="article"> {/* Unique key for each article */}
                   <h1 className="article-title">{article.title}</h1> {/* Article title */}
