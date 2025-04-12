@@ -12,7 +12,15 @@ function PopularNews() { // This component fetches and displays popular news art
       const fetchPopularNews = async () => {
         setIsLoading(true); // Set loading status to true before fetching data
         setError(null); // Reset error state before fetching data
-        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&sortBy=popularity&apiKey=9d3f0e550db9405eaef87d257bca0a90");   // Fetch popular news articles from the API
+        const response = await axios.get("https://newsapi.org/v2/everything", {  // Fetch news articles based on the search query
+          params: {
+            q: 'query', // Search query for popular news articles
+            from: '2025-04-11', // Start date for the news articles
+            to: '2025-04-12', // End date for the news articles
+            sortBy: 'popularity', // Sort the articles by popularity
+            apiKey: '9d3f0e550db9405eaef87d257bca0a90', // API key for authentication
+          },
+        });
         setPopularNews(response.data.articles); // Update the popular news state with the fetched data
       
         setIsLoading(false); // Set loading to false after fetching data

@@ -28,7 +28,7 @@
     border-radius: 10px; /* round the corners */
     border: black 2px solid; /* Optional: border color */
     background-color: #071236; /* Light background for contrast */
-    margin-top: 15px; /* space above the news feed */
+    margin-top: 25px; /* space above the news feed */
 }
 
 .article {
