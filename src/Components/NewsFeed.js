@@ -40,19 +40,21 @@ function NewsFeed({ searchQuery }) { // The NewsFeed component takes a query pro
   }
 
   return (
-    <div className="news-feed"> {/* Container for the news articles */}
-      <h1 className="h1"> Top-New</h1>
-      {articles.map((article, index) => ( // Map through the articles and render each one
-        <div key={index} className="article"> {/* Unique key for each article */}
-          <h1 className="article-title">{article.title}</h1> {/* Article title */}
-          <img className="article-image" src={article.urlToImage} alt={article.title} /> {/* Article image */}
-          <h2 className="article-source-name">{article.source.name}</h2> {/* Article source name */}
-          <p className="article-published">{article.publishedAt}</p>  {/* Article published date */}
-          <p className="article-author">{article.author}</p> {/* Article author */}
-          <p className="article-description">{article.description}</p> {/* Article description */}
-          <a className="article-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
-        </div>
-      ))}
+    <div className="news-feed-container"> {/* Main container for the news articles */}
+      <div className="news-feed"> {/* Container for the news articles */}
+        <h1 className="h1"> Top-New</h1>
+        {articles.map((article, index) => ( // Map through the articles and render each one
+          <div key={index} className="article"> {/* Unique key for each article */}
+            <h1 className="article-title">{article.title}</h1> {/* Article title */}
+            <img className="article-image" src={article.urlToImage} alt={article.title} /> {/* Article image */}
+            <h2 className="article-source-name">{article.source.name}</h2> {/* Article source name */}
+            <p className="article-published">{article.publishedAt}</p>  {/* Article published date */}
+            <p className="article-author">{article.author}</p> {/* Article author */}
+            <p className="article-description">{article.description}</p> {/* Article description */}
+            <a className="article-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,34 +1,14 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: right;
-    padding: 20px;
-    background-color: #03172b; /* Light background for contrast */
-}
-
-.welcome-message {
-    font-size: 1.5em;
-    color: white;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.h1 {
-    font-size: 3em;
-    color: white;
-    text-align: center;
-    margin-top: 1px;
-}
-
 .popular-news {
+    grid-column: 1; /* Span across all columns */
+    grid-row: 1; /* Place in the first row */
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     border-radius: 10px; /* round the corners */
     border: black 2px solid; /* Optional: border color */
     background-color: #071236; /* Light background for contrast */
-    margin-top: 25px; /* space above the news feed */
+    margin-top: 35px; /* space above the news feed */
 }
 
 .article {
@@ -38,7 +18,7 @@
 }
 
 .article-image {
-    width: 1000px; /* Adjust to your preferred size */
+    width: 600px; /* Adjust to your preferred size */
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* round the corners */
     margin-bottom: 10px;
