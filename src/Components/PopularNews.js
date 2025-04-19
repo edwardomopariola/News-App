@@ -38,26 +38,24 @@ function PopularNews() { // This component fetches and displays popular news art
   }
 
   return (
-    <div className="popular-news-container"> {/* Main container for the popular news articles */}
-      <div className="popular-news"> {/* Container for popular news articles */}
-        <h1 className="h1">Popular News</h1> {/* Title for popular news section */}
-          {popularNews.length > 0 ? (
-            popularNews.map((article, index) => ( // Map through the popular news articles and render each one
-              <div key={index} className="article"> {/* Unique key for each article */}
-                <h3 className="article-title">{article.title}</h3> {/* Article title */}
-                <img className="article-image" src={article.urlToImage} alt={article.title} /> {/* Article image */}
-                <h4 className="article-source-name">{article.source.name}</h4> {/* Article source name */}
-                <p className="article-published">{new Date(article.publishedAt).toLocaleDateString()}</p>  {/* Article published date */}
-                <p className="article-author">{article.author}</p> {/* Article author */}
-                <p className="article-description">{article.description}</p> {/* Article description */}
-                <a className="article-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
-              </div>
-            ))
-          ) : (
+    <div className="popular-news"> {/* Container for popular news articles */}
+      <h1 className="h1">Popular News</h1> {/* Title for popular news section */}
+        {popularNews.length > 0 ? (
+          popularNews.map((article, index) => ( // Map through the popular news articles and render each one
+            <div key={index} className="article"> {/* Unique key for each article */}
+              <h3 className="article-title">{article.title}</h3> {/* Article title */}
+              <img className="article-image" src={article.urlToImage} alt={article.title} /> {/* Article image */}
+              <h4 className="article-source-name">{article.source.name}</h4> {/* Article source name */}
+              <p className="article-published">{new Date(article.publishedAt).toLocaleDateString()}</p>  {/* Article published date */}
+              <p className="article-author">{article.author}</p> {/* Article author */}
+              <p className="article-description">{article.description}</p> {/* Article description */}
+              <a className="article-link" href={article.url} target="_blank" rel="noopener noreferrer">Read more</a> {/* Link to read more */}
+            </div>
+          ))
+        ) : (
             <div>No popular news articles found</div> // Show message if no popular news articles are found
-          )}
-      </div>  
-    </div>
+        )}
+    </div>  
   );
 }
 
