@@ -14,8 +14,8 @@ function App() {
 
   return (
     <div className='container'> {/* Main container for the application */}
-      <h1>News App</h1> {/* Header for the application */}
-      <h1> Welcome to the news of the day!!!</h1>
+      <h1 className='text-center'>News App</h1> {/* Header for the application */}
+      <h1 className='text-center'> Welcome to the news of the day!!!</h1>
       <SearchNews onSearch={handleSearch} /> {/* Pass the handleSearch function to the SearchNews component */}
       <div className='display-flex'> {/* Container for displaying news articles */}
         <PopularNews className="popular"/> {/* Render the PopularNews component */}

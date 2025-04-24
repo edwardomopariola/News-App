@@ -1,7 +1,18 @@
 @import "tailwindcss";
 
+body {
+    box-sizing: border-box;
+    background-color: #0a2527; /* Dark background color */
+    font-family: Arial, sans-serif; /* Font family for the entire page */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+
 .container {
     width: 100%; 
+    max-width: fit-content;
+    max-width: 100%;
     background-color: #0a2527; 
 }
 
@@ -34,12 +45,11 @@
 
 .display-flex {
     display: flex;
-    gap: 10px; /* Space between the components */
-    margin-top: 20px;
-    background-color: blueviolet; 
-    width: 100vw;
-    padding: 30px;
+    gap: 20px; /* Space between the components */
+    width: 100%;
     border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 5px; /* Space above the flex container */
 }
 
 .popular-news {
