@@ -1,5 +1,4 @@
-import axios from "axios";
-import fetch from "node-fetch";
+import axios from "axios"; // Importing axios for making HTTP requests
 
 const API_KEY = "9d3f0e550db9405eaef87d257bca0a90";
 
