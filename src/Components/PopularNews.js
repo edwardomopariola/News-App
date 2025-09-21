@@ -12,7 +12,7 @@ function PopularNews() { // This component fetches and displays popular news art
     const fetchPopularNews = async () => {
       setIsLoading(true); // Set loading status to true before fetching data
       setError(null); // Reset error state before fetching data
-      const response = await axios.get("https://newsapi.org/v2/everything", {  // Fetch news articles based on the search query
+      const response = await axios.get("api/news", {  // Fetch news articles based on the search query
         params: {
           q: 'news', // Search query for popular news articles
           sortBy: 'popularity', // Sort the articles by popularity
